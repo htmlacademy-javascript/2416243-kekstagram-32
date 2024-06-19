@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Sergei Pozdeev](https://up.htmlacademy.ru/javascript/32/user/2416243).
-* Наставник: `Неизвестно`.
+* Наставник: [Максим Иванов](https://htmlacademy.ru/profile/id342945).
 
 ---
 
