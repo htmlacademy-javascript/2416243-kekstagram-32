@@ -10,10 +10,12 @@ console.log(`Длина проверяемой строки меньше или 
 // Палиндром
 function isStringPalindrome(string) {
   const trimmedString = string.replaceAll(/[^а-яА-Яa-zA-Z0-9]/g, '').toLowerCase();
+
   let reversedString = '';
   for (let i = trimmedString.length - 1; i >= 0; i--) {
     reversedString += trimmedString[i];
   }
+
   return trimmedString === reversedString;
 }
 
@@ -29,13 +31,17 @@ function extractNumber(string) {
   if (typeof string === 'number') {
     string = string.toString();
   }
+
   let number = '';
   for (const char of string) {
     if (!Number.isNaN(parseInt(char, 10))) {
       number += char;
     }
   }
-  return number ? parseInt(number, 10) : NaN;
+
+  return number
+    ? parseInt(number, 10)
+    : NaN;
 }
 
 /* eslint-disable */
