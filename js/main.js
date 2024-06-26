@@ -98,4 +98,4 @@ const createPhotoData = (_, index) => {
 
 const photosData = () => Array.from({length: GENERATOR.PHOTOS_COUNT.max}, createPhotoData);
 
-console.log(photosData());
+photosData();
