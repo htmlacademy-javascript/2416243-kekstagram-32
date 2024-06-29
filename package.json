@@ -7,13 +7,14 @@
     "type": "git",
     "url": "git@github.com:htmlacademy-javascript/2416243-kekstagram-32.git"
   },
+  "type": "module",
   "bugs": {
     "url": "https://github.com/htmlacademy-javascript/2416243-kekstagram-32/issues"
   },
   "devDependencies": {
     "eslint": "8.57.0",
     "eslint-config-htmlacademy": "10.0.1",
-    "vite": "5.3.1"
+    "vite": "5.3.2"
   },
   "license": "MIT",
   "scripts": {
