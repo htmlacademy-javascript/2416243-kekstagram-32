@@ -1,7 +1,6 @@
 import { generatePhotosData } from './data.js';
+import { renderMiniatures } from './miniature.js';
 
 const photosData = generatePhotosData();
 
-/* eslint-disable */
-console.log(photosData);
-/* eslint-enable */
+renderMiniatures(photosData);
