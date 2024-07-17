@@ -1,6 +1,10 @@
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const pictureContainer = document.querySelector('.pictures');
 
+const createMiniatureClickHandler = (miniature) => (evt) => {
+  evt.preventDefault();
+  document.dispatchEvent(new CustomEvent('miniatureSelect', {detail: miniature}));
+};
 
 const createMiniature = (miniature) => {
   const { url, comments, description, likes } = miniature;
@@ -10,6 +14,8 @@ const createMiniature = (miniature) => {
   miniatureElement.querySelector('.picture__img').alt = description;
   miniatureElement.querySelector('.picture__likes').textContent = likes;
   miniatureElement.querySelector('.picture__comments').textContent = comments.length;
+
+  miniatureElement.addEventListener('click', createMiniatureClickHandler(miniature));
 
   return miniatureElement;
 };

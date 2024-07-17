@@ -25,7 +25,7 @@ const createPhotoComment = () => {
 const createPhotoData = (_, index) => {
   const id = index + 1;
   const url = `photos/${ id }.jpg`;
-  const description = getRandomArrayElement(COMMENT_DATA.DESCRIPTIONS);
+  const description = COMMENT_DATA.DESCRIPTIONS[id];
   const like = getRandomInteger(GENERATOR.LIKES_COUNT.min, GENERATOR.LIKES_COUNT.max);
   const comments = Array.from({length: getRandomInteger(GENERATOR.COMMENTS_COUNT.min, GENERATOR.COMMENTS_COUNT.max)}, createPhotoComment);
 
