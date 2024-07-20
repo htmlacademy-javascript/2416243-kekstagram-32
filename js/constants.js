@@ -70,4 +70,6 @@ const COMMENT_DATA = {
   ]
 };
 
-export { GENERATOR, COMMENT_DATA };
+const COMMENT_LOAD_STEP = 5;
+
+export { GENERATOR, COMMENT_DATA, COMMENT_LOAD_STEP };

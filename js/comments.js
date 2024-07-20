@@ -1,14 +1,12 @@
 const commentsContainer = document.querySelector('.social__comments');
-const commentTemplate = document.querySelector('.social__comment');
-const commentsCounter = document.querySelector('.social__comment-count');
-const commentsLoader = document.querySelector('.comments-loader');
-
-commentsCounter.classList.add('hidden');
-commentsLoader.classList.add('hidden');
+const commentElement = document.querySelector('#comment').content.querySelector('.social__comment');
+const commentsShownCounter = document.querySelector('.social__comment-shown-count');
+const commentsTotalCounter = document.querySelector('.social__comment-total-count');
+const commentsLoaderButton = document.querySelector('.social__comments-loader');
 
 const fillComments = (commentProperties) => {
   const { avatar, name, message } = commentProperties;
-  const comment = commentTemplate.cloneNode(true);
+  const comment = commentElement.cloneNode(true);
 
   comment.querySelector('.social__picture').src = avatar;
   comment.querySelector('.social__picture').alt = name;
@@ -17,8 +15,16 @@ const fillComments = (commentProperties) => {
   return comment;
 };
 
-const renderComments = (commentsData) => {
-  commentsContainer.replaceChildren(...commentsData.map((commentProperties) => fillComments(commentProperties)));
+
+const renderComments = (commentsData, limitCommentShown) => {
+  const commentsTotal = commentsData.length;
+  const isAllCommentsShown = limitCommentShown >= commentsTotal;
+  limitCommentShown = isAllCommentsShown ? commentsTotal : limitCommentShown;
+  commentsContainer.innerHTML = '';
+  commentsContainer.append(...commentsData.slice(0, limitCommentShown).map((commentProperties) => fillComments(commentProperties)));
+  commentsShownCounter.textContent = limitCommentShown;
+  commentsTotalCounter.textContent = commentsTotal;
+  commentsLoaderButton.classList.toggle('hidden', isAllCommentsShown);
 };
 
 export { renderComments };
