@@ -1,4 +1,4 @@
-const GENERATOR = {
+export const GENERATOR = {
   PHOTOS_COUNT: {
     min: 1,
     max: 25
@@ -17,7 +17,7 @@ const GENERATOR = {
   }
 };
 
-const COMMENT_DATA = {
+export const COMMENT_DATA = {
   NAMES: [
     'Михаил',
     'София',
@@ -70,6 +70,50 @@ const COMMENT_DATA = {
   ]
 };
 
-const COMMENT_LOAD_STEP = 5;
+export const COMMENT_LOAD_STEP = 5;
 
-export { GENERATOR, COMMENT_DATA, COMMENT_LOAD_STEP };
+export const MAX_COMMENT_LENGTH = 140;
+
+export const MAX_HASHTAG_LENGTH = 20;
+
+export const MAX_HASHTAG_ITEM = 5;
+
+export const UPLOAD_IMAGE_SCALE_CONFIG = {
+  min: 25,
+  max: 100,
+  step: 25,
+  defaultValue: 100
+};
+
+export const UPLOAD_IMAGE_EFFECTS = {
+  'chrome': {
+    min: 0,
+    max: 1,
+    step: 0.1,
+    start: 1
+  },
+  'sepia': {
+    min: 0,
+    max: 1,
+    step: 0.1,
+    start: 1
+  },
+  'marvin': {
+    min: 0,
+    max: 100,
+    step: 0.1,
+    start: 100
+  },
+  'phobos': {
+    min: 0,
+    max: 3,
+    step: 0.1,
+    start: 3
+  },
+  'heat': {
+    min: 1,
+    max: 3,
+    step: 0.1,
+    start: 3
+  }
+};

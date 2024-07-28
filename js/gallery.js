@@ -1,5 +1,5 @@
 import {renderMiniatures} from './miniature.js';
-import {fillPopup} from './photo-popup.js';
+import {fillPopup} from './fullscreen-photo.js';
 
 const renderGallery = (photosData) => {
   renderMiniatures(photosData);
