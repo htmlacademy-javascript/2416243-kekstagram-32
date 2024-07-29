@@ -1,5 +1,4 @@
-const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const pictureContainer = document.querySelector('.pictures');
+import {pictureContainer, pictureElement} from './dom-elements.js';
 
 const createMiniatureClickHandler = (miniature) => (evt) => {
   evt.preventDefault();
@@ -8,7 +7,7 @@ const createMiniatureClickHandler = (miniature) => (evt) => {
 
 const createMiniature = (miniature) => {
   const { url, comments, description, likes } = miniature;
-  const miniatureElement = pictureTemplate.cloneNode(true);
+  const miniatureElement = pictureElement.cloneNode(true);
 
   miniatureElement.querySelector('.picture__img').src = url;
   miniatureElement.querySelector('.picture__img').alt = description;
