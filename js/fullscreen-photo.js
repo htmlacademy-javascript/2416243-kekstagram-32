@@ -2,7 +2,6 @@ import {initializeCommentBlock, renderComments} from './comments.js';
 import {bigPicturePopup, buttonClosePopup} from './dom-elements.js';
 import {openPopup} from './popup.js';
 
-
 const fillPopup = (photoData) => {
   const { url, comments, description, likes } = photoData;
 
