@@ -39,4 +39,5 @@ const closePopup = () => {
   document.removeEventListener('click', closePopupClickOnDocument);
 };
 
+
 export { openPopup, closePopup };
