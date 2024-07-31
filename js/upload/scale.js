@@ -32,7 +32,7 @@ export const initializeImageScale = () => {
   imageUploadScaleDownButton.addEventListener('click', () => onScaleDownButtonClick());
 };
 
-// export const resetImageScale = () => {
-//   imageUploadScaleControlValue.value = `${UPLOAD_IMAGE_SCALE_CONFIG.defaultValue}%`;
-//   imageUploadPreview.style.transform = null;
-// };
+export const resetImageScale = () => {
+  imageUploadScaleControlValue.value = `${UPLOAD_IMAGE_SCALE_CONFIG.defaultValue}%`;
+  imageUploadPreview.style.transform = null;
+};

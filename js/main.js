@@ -1,8 +1,11 @@
-import {generatePhotosData} from './data.js';
 import {renderGallery} from './gallery.js';
 import {initializeUploadForm} from './upload/upload-form.js';
+import {getRequest} from './api.js';
+import {showErrorUploadMessage} from './response-message.js';
 
-const photosData = generatePhotosData();
-
-renderGallery(photosData);
+getRequest()
+  .then((photosData) => {
+    renderGallery(photosData);
+  })
+  .catch(() => showErrorUploadMessage());
 initializeUploadForm();

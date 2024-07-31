@@ -53,9 +53,7 @@ pristine.addValidator(imageUploadFormHashtag, validateHashtagCount, errorMessage
 pristine.addValidator(imageUploadFormHashtag, validateHashtagDuplicate, errorMessage.DUPLICATE_HASHTAGS, 1, true);
 pristine.addValidator(imageUploadFormDescription, validateCommentLength, errorMessage.COMMENT_LENGTH, 1, true);
 
-const validateUploadForm = () => {
-  pristine.validate();
-};
+const validateUploadForm = () => pristine.validate();
 
 const resetUploadForm = () => {
   pristine.reset();

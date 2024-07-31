@@ -1,6 +1,6 @@
 import {initializeCommentBlock, renderComments} from './comments.js';
 import {bigPicturePopup, buttonClosePopup} from './dom-elements.js';
-import {openPopup} from './popup.js';
+import {closePopupClickHandler, openPopup} from './popup.js';
 
 const fillPopup = (photoData) => {
   const { url, comments, description, likes } = photoData;
@@ -12,7 +12,9 @@ const fillPopup = (photoData) => {
 
   initializeCommentBlock(comments);
   renderComments(comments);
-  openPopup(bigPicturePopup, buttonClosePopup);
+  openPopup(bigPicturePopup);
 };
+
+buttonClosePopup.addEventListener('click', closePopupClickHandler);
 
 export { fillPopup };

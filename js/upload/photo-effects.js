@@ -33,7 +33,7 @@ const updateSlider = ({min, max, start, step}) => {
   });
 };
 
-const resetEffects = () => {
+export const resetEffects = () => {
   imageUploadEffectLevel.classList.add('hidden');
   imageUploadPreview.style = 'none';
   document.querySelector('#effect-none').checked = true;
