@@ -1,7 +1,6 @@
 import {isEscapeKey} from './util.js';
 
 let popup;
-let closeButton;
 
 const closePopupEscKeyHandler = (event) => {
   if (isEscapeKey(event) && !event.target.type?.startsWith('text')) {
@@ -22,9 +21,8 @@ export const closePopupClickHandler = () => {
   closePopup();
 };
 
-export const openPopup = (element, button) => {
+export const openPopup = (element) => {
   popup = element;
-  closeButton = button;
   popup.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', closePopupEscKeyHandler);
