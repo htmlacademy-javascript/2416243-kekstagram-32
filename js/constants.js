@@ -129,3 +129,5 @@ export const METHODS = {
   'POST': 'post',
   'GET': 'get'
 };
+
+export const PHOTO_FILE_TYPE = 'image/jpg, image/png, image/gif, image/jpeg';
