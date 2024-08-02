@@ -117,3 +117,17 @@ export const UPLOAD_IMAGE_EFFECTS = {
     start: 3
   }
 };
+
+export const BASE_URL = 'https://32.javascript.htmlacademy.pro/kekstagram';
+
+export const ROUTES = {
+  'getData': '/data',
+  'postData': '/'
+};
+
+export const METHODS = {
+  'POST': 'post',
+  'GET': 'get'
+};
+
+export const PHOTO_FILE_TYPE = 'image/jpg, image/png, image/gif, image/jpeg';
