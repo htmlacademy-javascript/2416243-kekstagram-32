@@ -1,9 +1,11 @@
-function getRandomInteger(min, max) {
-  return Math.round(Math.random() * Math.abs(max - min) + min);
-}
+import {DEBOUNCE_DELAY} from './constants.js';
 
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+export const isEscapeKey = (evt) => evt.key === 'Escape';
 
-const isEscapeKey = (evt) => evt.key === 'Escape';
-
-export { getRandomInteger, getRandomArrayElement, isEscapeKey };
+export const debounce = (callback, timeoutDelay = DEBOUNCE_DELAY) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
