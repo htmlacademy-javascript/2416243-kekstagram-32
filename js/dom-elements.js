@@ -25,3 +25,4 @@ export const imageUploadEffectList = imageUploadForm.querySelector('.effects__li
 export const successMessageElement = document.querySelector('#success').content.querySelector('.success');
 export const errorMessageElement = document.querySelector('#error').content.querySelector('.error');
 export const imageUploadInput = imageUploadForm.querySelector('.img-upload__input');
+export const imageFilters = document.querySelector('.img-filters');

@@ -1,7 +1,7 @@
 import {pictureContainer, pictureElement} from './dom-elements.js';
 
-const createMiniatureClickHandler = (miniature) => (evt) => {
-  evt.preventDefault();
+const createMiniatureClickHandler = (miniature) => (event) => {
+  event.preventDefault();
   document.dispatchEvent(new CustomEvent('miniatureSelect', {detail: miniature}));
 };
 
@@ -20,6 +20,7 @@ const createMiniature = (miniature) => {
 };
 
 const renderMiniatures = (miniatures) => {
+  pictureContainer.querySelectorAll('.picture').forEach((element) => element.remove());
   pictureContainer.append(...miniatures.map((miniature) => createMiniature(miniature)));
 };
 

@@ -131,3 +131,5 @@ export const METHODS = {
 };
 
 export const PHOTO_FILE_TYPE = 'image/jpg, image/png, image/gif, image/jpeg';
+
+export const DEBOUNCE_DELAY = 500;
