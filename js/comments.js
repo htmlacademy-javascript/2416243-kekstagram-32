@@ -30,7 +30,7 @@ const onCommentsLoaderButtonClick = () => {
 export const renderComments = (commentsData) => {
   currentCommentsData = [...commentsData];
   totalComments = commentsData.length;
-  commentsTotalCounter.textContent = commentsData.length;
+  commentsTotalCounter.textContent = totalComments;
   commentsContainer.replaceChildren();
   commentsLoaderButton.click();
 };

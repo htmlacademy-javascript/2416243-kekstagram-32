@@ -6,8 +6,8 @@ import {initializeFilter} from './filter.js';
 
 getRequest()
   .then((photosData) => {
-    initializeFilter(photosData);
     renderGallery(photosData);
+    initializeFilter(photosData);
   })
   .catch((error) => showServerErrorMessage(error.message));
 initializeUploadForm();
