@@ -1,8 +1,8 @@
-import {initializeCommentBlock, renderComments} from './comments.js';
 import {bigPicturePopup, fullscreenPhotoClosePopupButton} from './dom-elements.js';
-import {closePopupClickHandler, openPopup} from './popup.js';
+import {renderComments} from './comments.js';
+import {closePopup, openPopup} from './popup.js';
 
-const fillPopup = (photoData) => {
+export const fullscreenPhotoPopup = (photoData) => {
   const { url, comments, description, likes } = photoData;
 
   bigPicturePopup.querySelector('.big-picture__img img').src = url;
@@ -10,11 +10,8 @@ const fillPopup = (photoData) => {
   bigPicturePopup.querySelector('.likes-count').textContent = likes;
   bigPicturePopup.querySelector('.social__caption').textContent = description;
 
-  initializeCommentBlock(comments);
   renderComments(comments);
   openPopup(bigPicturePopup);
 };
 
-fullscreenPhotoClosePopupButton.addEventListener('click', closePopupClickHandler);
-
-export { fillPopup };
+fullscreenPhotoClosePopupButton.addEventListener('click', closePopup);

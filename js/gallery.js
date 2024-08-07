@@ -1,11 +1,11 @@
 import {renderMiniatures} from './miniature.js';
-import {fillPopup} from './fullscreen-photo.js';
+import {fullscreenPhotoPopup} from './fullscreen-photo.js';
 
 const renderGallery = (photosData) => {
   renderMiniatures(photosData);
 
   document.addEventListener('miniatureSelect', (event) => {
-    fillPopup(event.detail);
+    fullscreenPhotoPopup(event.detail);
   });
 };
 

@@ -1,7 +1,7 @@
 import {renderGallery} from './gallery.js';
 import {initializeUploadForm} from './upload/upload-form.js';
 import {getRequest} from './api.js';
-import {showErrorUploadMessage} from './response-message.js';
+import {showServerErrorMessage} from './response-message.js';
 import {initializeFilter} from './filter.js';
 
 getRequest()
@@ -9,5 +9,5 @@ getRequest()
     initializeFilter(photosData);
     renderGallery(photosData);
   })
-  .catch(() => showErrorUploadMessage());
+  .catch((error) => showServerErrorMessage(error.message));
 initializeUploadForm();

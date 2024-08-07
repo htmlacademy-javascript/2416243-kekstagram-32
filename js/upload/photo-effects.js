@@ -40,7 +40,7 @@ export const resetEffects = () => {
 };
 
 const applyEffect = () => {
-  const value = imageUploadEffectLevelSlider.noUiSlider.get();
+  const value = parseFloat(imageUploadEffectLevelSlider.noUiSlider.get());
   imageUploadEffectLevelValue.value = value;
   switch (currentEffect) {
     case 'chrome':

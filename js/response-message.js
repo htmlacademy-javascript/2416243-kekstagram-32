@@ -1,5 +1,11 @@
-import {body, errorMessageElement, successMessageElement} from './dom-elements.js';
+import {
+  errorGettingMessageElement,
+  errorSendingMessageElement,
+  pageBody,
+  successSendingMessageElement
+} from './dom-elements.js';
 import {isEscapeKey} from './util.js';
+import {ALERT_SHOW_TIME} from './constants.js';
 
 let currentMessage;
 
@@ -9,22 +15,36 @@ const closeUploadMessage = (event) => {
   const closeButton = element.querySelector('button');
   if (event.target === element || event.target === closeButton || isEscapeKey(event)) {
     element.remove();
-    body.removeEventListener('click', closeUploadMessage);
-    body.removeEventListener('keydown', closeUploadMessage);
+    pageBody.removeEventListener('click', closeUploadMessage);
+    pageBody.removeEventListener('keydown', closeUploadMessage);
   }
 };
 
-const renderUploadMessage = (template) => {
+const renderResponseMessage = (template) => {
   currentMessage = template.cloneNode(true);
-  body.append(currentMessage);
-  body.addEventListener('click', closeUploadMessage);
-  body.addEventListener('keydown', closeUploadMessage);
+  pageBody.append(currentMessage);
+  pageBody.addEventListener('click', closeUploadMessage);
+  pageBody.addEventListener('keydown', closeUploadMessage);
 };
 
 export const showSuccessUploadMessage = () => {
-  renderUploadMessage(successMessageElement);
+  renderResponseMessage(successSendingMessageElement);
 };
 
 export const showErrorUploadMessage = () => {
-  renderUploadMessage(errorMessageElement);
+  renderResponseMessage(errorSendingMessageElement);
+};
+
+export const showServerErrorMessage = (message) => {
+  const errorTemplate = errorGettingMessageElement.cloneNode(true);
+
+  if (message) {
+    errorTemplate.querySelector('.data-error__title').textContent = message;
+  }
+
+  pageBody.append(errorTemplate);
+
+  setTimeout(() => {
+    errorTemplate.remove();
+  }, ALERT_SHOW_TIME);
 };

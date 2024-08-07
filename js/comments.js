@@ -7,11 +7,11 @@ import {
 } from './dom-elements.js';
 import {COMMENT_LOAD_STEP} from './constants.js';
 
-let limitCommentShown;
-let commentsLoader;
+let currentCommentsData;
+let totalComments;
 
-const fillComments = (commentProperties) => {
-  const { avatar, name, message } = commentProperties;
+const createComment = (commentProperties) => commentProperties.map((properties) => {
+  const { avatar, name, message } = properties;
   const comment = commentElement.cloneNode(true);
 
   comment.querySelector('.social__picture').src = avatar;
@@ -19,32 +19,20 @@ const fillComments = (commentProperties) => {
   comment.querySelector('.social__text').textContent = message;
 
   return comment;
+});
+
+const onCommentsLoaderButtonClick = () => {
+  commentsContainer.append(...createComment(currentCommentsData.splice(0, COMMENT_LOAD_STEP)));
+  commentsShownCounter.textContent = totalComments - currentCommentsData.length;
+  commentsLoaderButton.classList.toggle('hidden', !currentCommentsData.length);
 };
 
-const renderComments = (commentsData) => {
-  const commentsTotal = commentsData.length;
-  const isAllCommentsShown = limitCommentShown >= commentsTotal;
-
-  commentsContainer.innerHTML = '';
-  commentsLoaderButton.classList.toggle('hidden', isAllCommentsShown);
-  commentsTotalCounter.textContent = commentsTotal;
-  limitCommentShown = isAllCommentsShown ? commentsTotal : limitCommentShown;
-  commentsShownCounter.textContent = limitCommentShown;
-
-  const commentsDataLimited = commentsData.slice(0, limitCommentShown);
-  const commentCards = commentsDataLimited.map((commentProperties) => fillComments(commentProperties));
-  commentsContainer.append(...commentCards);
+export const renderComments = (commentsData) => {
+  currentCommentsData = [...commentsData];
+  totalComments = commentsData.length;
+  commentsTotalCounter.textContent = commentsData.length;
+  commentsContainer.replaceChildren();
+  commentsLoaderButton.click();
 };
 
-const changeMaxCommentClickHandler = (comments) => {
-  limitCommentShown += COMMENT_LOAD_STEP;
-  renderComments(comments);
-};
-
-const initializeCommentBlock = (comments) => {
-  limitCommentShown = COMMENT_LOAD_STEP;
-  commentsLoader = () => changeMaxCommentClickHandler(comments);
-  commentsLoaderButton.addEventListener('click', commentsLoader);
-};
-
-export { renderComments,initializeCommentBlock };
+commentsLoaderButton.addEventListener('click', onCommentsLoaderButtonClick);
