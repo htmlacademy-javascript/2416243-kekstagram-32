@@ -55,8 +55,8 @@ pristine.addValidator(imageUploadFormDescription, validateCommentLength, errorMe
 
 const validateUploadForm = () => pristine.validate();
 
-const resetUploadForm = () => {
+const resetValidationUploadForm = () => {
   pristine.reset();
 };
 
-export { validateUploadForm, resetUploadForm };
+export { validateUploadForm, resetValidationUploadForm };
