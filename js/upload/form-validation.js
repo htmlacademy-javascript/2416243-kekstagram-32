@@ -17,32 +17,30 @@ const errorMessage = {
   COMMENT_LENGTH: `Длина хэш-тега не может превышать ${MAX_HASHTAG_LENGTH} символов`
 };
 
-const validateHashtagCount = (value) => value.trim() === '' || value.split(/\s+/).length <= MAX_HASHTAG_ITEM;
+const normalizeTags = (tagString) => tagString
+  .trim()
+  .split(' ')
+  .filter((tag) => Boolean(tag.length));
+
+const validateHashtagCount = (value) => normalizeTags(value).length <= MAX_HASHTAG_ITEM;
+
 const validateHashtagDuplicate = (value) => {
-  const lowerCaseHashtags = value.split(/\s+/).map((hashtag) => hashtag.toLowerCase());
+  const lowerCaseHashtags = normalizeTags(value).map((hashtag) => hashtag.toLowerCase());
   return new Set(lowerCaseHashtags).size === lowerCaseHashtags.length;
 };
-const validateHashtagLength = (value) => value.trim() === '' ||
-  value
-    .split(/\s+/)
-    .every((hashtag) => hashtag
-      .length <= MAX_HASHTAG_LENGTH);
+
+const validateHashtagLength = (value) =>
+  normalizeTags(value).every((hashtag) => hashtag.length <= MAX_HASHTAG_LENGTH);
+
 const validateHashtagMakeup = (value) =>
-  value.trim() === '' ||
-  value
-    .split(/\s+/)
-    .every((hashtag) => /^#[a-zа-яё0-9]+$/i
-      .test(hashtag));
+  normalizeTags(value).every((hashtag) => /^#[a-zа-яё0-9]+$/i.test(hashtag));
+
 const validateHashtagStartSymbol = (value) =>
-  value.trim() === '' ||
-  value
-    .split(/\s+/)
-    .every((hashtag) => hashtag[0] === '#');
+  normalizeTags(value).every((hashtag) => hashtag[0] === '#');
+
 const validateHashtagStartNotOnlySymbol = (value) =>
-  value.trim() === '' ||
-  value
-    .split(/\s+/)
-    .every((hashtag) => hashtag !== '#');
+  normalizeTags(value).every((hashtag) => hashtag !== '#');
+
 const validateCommentLength = (value) => value.length <= MAX_COMMENT_LENGTH;
 
 pristine.addValidator(imageUploadFormHashtag, validateHashtagStartSymbol, errorMessage.HASHTAG_START_SYMBOL, 6, true);
@@ -55,8 +53,6 @@ pristine.addValidator(imageUploadFormDescription, validateCommentLength, errorMe
 
 const validateUploadForm = () => pristine.validate();
 
-const resetValidationUploadForm = () => {
-  pristine.reset();
-};
+const resetValidationUploadForm = () => pristine.reset();
 
 export { validateUploadForm, resetValidationUploadForm };

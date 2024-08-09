@@ -23,14 +23,9 @@ const resetUploadFormSetting = () => {
   imageUploadInput.value = '';
 };
 
-const blockSubmitButton = () => {
-  imageUploadFormSubmitButton.disabled = true;
-  imageUploadFormSubmitButton.textContent = 'Отправляю...';
-};
-
-const unblockSubmitButton = () => {
-  imageUploadFormSubmitButton.disabled = false;
-  imageUploadFormSubmitButton.textContent = 'Опубликовать';
+const setSubmitButtonDisabled = (isDisabled) => {
+  imageUploadFormSubmitButton.disabled = isDisabled;
+  imageUploadFormSubmitButton.textContent = isDisabled ? 'Отправляю...' : 'Опубликовать';
 };
 
 export const initializeUploadForm = () => {
@@ -38,7 +33,6 @@ export const initializeUploadForm = () => {
   imageUploadForm.addEventListener('change', ()=> {
     const file = imageUploadInput.files[0];
     imageUploadPreview.src = URL.createObjectURL(file);
-    imageUploadPreview.style.width = '100%';
     effectsPreview.forEach((preview) => {
       preview.style.backgroundImage = `url(${imageUploadPreview.src})`;
     });
@@ -51,7 +45,7 @@ export const initializeUploadForm = () => {
     event.preventDefault();
     if (validateUploadForm()) {
       const data = new FormData(imageUploadForm);
-      blockSubmitButton();
+      setSubmitButtonDisabled(true);
       postRequest(data)
         .then(() => {
           showSuccessUploadMessage();
@@ -60,7 +54,9 @@ export const initializeUploadForm = () => {
         .catch(() => {
           showErrorUploadMessage();
         })
-        .finally(unblockSubmitButton);
+        .finally(() => {
+          setSubmitButtonDisabled(false);
+        });
     }
   });
 };
